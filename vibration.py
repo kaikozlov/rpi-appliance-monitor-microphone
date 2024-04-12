@@ -206,7 +206,7 @@ def send_appliance_inactive_message():
     global appliance_active
     appliance_active = False
 
-
+# MARK: Def VIBRATION DETECTION
 def vibrated(x):
     global vibrating
     global last_vibration_time
@@ -247,6 +247,7 @@ start_vibration_time = last_vibration_time
 config = ConfigParser()
 config.read(sys.argv[1])
 verbose = config.getboolean('main', 'VERBOSE')
+#MARK: Sensor Pin
 sensor_pin = config.getint('main', 'SENSOR_PIN')
 begin_seconds = config.getint('main', 'SECONDS_TO_START')
 end_seconds = config.getint('main', 'SECONDS_TO_END')
@@ -298,3 +299,5 @@ logging.info('Running config file {} monitoring GPIO pin {}'\
       .format(sys.argv[1], str(sensor_pin)))
 threading.Timer(1, heartbeat).start()
 
+
+# REIMPLEMENT USING USB MICROPHONE INSTEAD OF GPIO. THIS WILL ALLOW FOR MORE ACCURATE DETECTION OF VIBRATION.
